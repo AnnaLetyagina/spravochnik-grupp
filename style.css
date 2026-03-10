@@ -1,0 +1,546 @@
+/* style.css - Полное оформление в стиле Белоярского политехнического колледжа */
+
+/* ======== ПЕРЕМЕННЫЕ И ОБЩИЕ СТИЛИ ======== */
+:root {
+    --bpk-blue: #003057;
+    --bpk-burgundy: #8b0000;
+    --bpk-gold: #ffd966;
+    --bpk-light: #f4f7fc;
+    --bpk-gray: #1e2f40;
+    --bpk-light-gray: #eef2f6;
+    --bpk-border: #dce1e7;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--bpk-light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ======== ШАПКА САЙТА ======== */
+.header {
+    background-color: var(--bpk-blue);
+    color: white;
+    padding: 15px 0;
+    border-bottom: 5px solid var(--bpk-burgundy);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    text-decoration: none;
+    color: white;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.header-link:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.header-logo {
+    height: 70px;
+    width: auto;
+    border-radius: 8px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.header-title h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.header-title p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin: 8px 0 0 0;
+}
+
+/* ======== ОСНОВНОЙ КОНТЕЙНЕР ======== */
+.main-container {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 30px;
+    flex: 1;
+    width: 100%;
+}
+
+/* ======== ХЛЕБНЫЕ КРОШКИ ======== */
+.breadcrumb-custom {
+    background-color: white;
+    padding: 12px 25px;
+    border-radius: 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 35px;
+    font-size: 0.95rem;
+    border-left: 6px solid var(--bpk-burgundy);
+}
+
+.breadcrumb-custom a {
+    color: var(--bpk-blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.breadcrumb-custom a:hover {
+    color: var(--bpk-burgundy);
+    text-decoration: underline;
+}
+
+.breadcrumb-custom span {
+    color: #555;
+    margin: 0 10px;
+}
+
+.breadcrumb-custom .current {
+    color: var(--bpk-burgundy);
+    font-weight: 600;
+}
+
+/* ======== ЗАГОЛОВОК РАЗДЕЛА ======== */
+.section-title {
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--bpk-border);
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.section-title h2 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #1a2b3c;
+    margin: 0;
+}
+
+.total-badge {
+    background-color: var(--bpk-burgundy);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ======== ПАНЕЛЬ ФИЛЬТРОВ ======== */
+.filters-panel {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,48,87,0.08);
+    border: 1px solid #e9ecf0;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    z-index: 10;
+}
+
+.search-input {
+    padding-left: 45px !important;
+    border-radius: 30px;
+    border: 1px solid #e0e6ed;
+    height: 45px;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 0 3px rgba(0,48,87,0.1);
+    border-color: var(--bpk-blue);
+}
+
+.form-select {
+    border-radius: 30px;
+    height: 45px;
+    border: 1px solid #e0e6ed;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    box-shadow: 0 0 0 3px rgba(0,48,87,0.1);
+    border-color: var(--bpk-blue);
+}
+
+.btn-excel {
+    background-color: #1e7b4c;
+    color: white;
+    border-radius: 12px;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.btn-excel:hover {
+    background-color: #16633e;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-pdf {
+    background-color: #b22222;
+    color: white;
+    border-radius: 12px;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.btn-pdf:hover {
+    background-color: #8b1a1a;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-reset {
+    background-color: #6c757d;
+    color: white;
+    border-radius: 12px;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.btn-reset:hover {
+    background-color: #545b62;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-tag {
+    background-color: var(--bpk-light);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--bpk-border);
+}
+
+.filter-tag i {
+    cursor: pointer;
+    color: var(--bpk-burgundy);
+    font-size: 0.8rem;
+}
+
+/* ======== ТАБЛИЦА ГРУПП ======== */
+.card-table {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0,48,87,0.1);
+    overflow: hidden;
+    border: 1px solid #e9ecf0;
+    margin-bottom: 30px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.groups-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.groups-table thead tr {
+    background-color: var(--bpk-light-gray);
+    border-bottom: 2px solid #b0c0cf;
+}
+
+.groups-table th {
+    text-align: left;
+    padding: 18px 20px;
+    font-weight: 600;
+    color: var(--bpk-blue);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transition);
+}
+
+.groups-table th:hover {
+    background-color: #e2e8f0;
+}
+
+.sort-icon {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.groups-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e0e6ed;
+    color: #1f2a36;
+}
+
+.groups-table tbody tr {
+    transition: var(--transition);
+}
+
+.groups-table tbody tr:hover {
+    background-color: #f5f9ff;
+    cursor: pointer;
+}
+
+.group-tag {
+    background-color: var(--bpk-blue);
+    color: white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--bpk-blue);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    background-color: var(--bpk-light);
+    color: var(--bpk-burgundy);
+}
+
+.table-footer {
+    padding: 15px 20px;
+    background-color: white;
+    border-top: 1px solid var(--bpk-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.rows-info {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+}
+
+/* ======== МОДАЛЬНОЕ ОКНО ======== */
+.modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: var(--bpk-blue);
+    color: white;
+    border-bottom: 3px solid var(--bpk-burgundy);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.group-detail-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--bpk-light);
+    border-radius: 10px;
+}
+
+.group-detail-label {
+    font-weight: 600;
+    color: var(--bpk-blue);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.group-detail-value {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.students-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.students-list li {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--bpk-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.students-list li:last-child {
+    border-bottom: none;
+}
+
+.student-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--bpk-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* ======== ФУТЕР ======== */
+.footer {
+    background-color: var(--bpk-gray);
+    color: #d3dce6;
+    padding: 25px 0;
+    margin-top: 40px;
+    border-top: 4px solid var(--bpk-burgundy);
+    font-size: 0.95rem;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer i {
+    margin-right: 8px;
+    color: var(--bpk-gold);
+}
+
+/* ======== АДАПТИВНОСТЬ ======== */
+@media (max-width: 992px) {
+    .header-title h1 {
+        font-size: 1.5rem;
+    }
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-link {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .header-logo {
+        margin-right: 0;
+    }
+    
+    .filters-panel .row {
+        flex-direction: column;
+    }
+    
+    .groups-table th,
+    .groups-table td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-title {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        padding: 0 15px;
+    }
+    
+    .breadcrumb-custom {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    
+    .groups-table {
+        font-size: 0.85rem;
+    }
+    
+    .groups-table th,
+    .groups-table td {
+        padding: 10px 6px;
+    }
+    
+    .group-tag {
+        padding: 2px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .total-badge {
+        font-size: 0.9rem;
+        padding: 5px 15px;
+    }
+}
