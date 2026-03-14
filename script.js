@@ -1,6 +1,3 @@
-// script.js - Полная логика работы справочника групп
-
-// ======== ДАННЫЕ (в реальном проекте будут загружаться с сервера) ========
 const groupsData = [
     {
         id: 1,
@@ -230,41 +227,34 @@ const groupsData = [
     }
 ];
 
-// ======== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ========
 let currentSort = { column: 'code', direction: 'asc' };
 let filteredData = [...groupsData];
 let modalInstance = null;
 
-// ======== ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ ========
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация модального окна Bootstrap
     const modalElement = document.getElementById('groupModal');
     if (modalElement) {
         modalInstance = new bootstrap.Modal(modalElement);
     }
     
-    // Загрузка данных
+
     renderTable();
     
-    // Назначение обработчиков событий
+
     setupEventListeners();
 });
 
-// ======== НАСТРОЙКА ОБРАБОТЧИКОВ ========
 function setupEventListeners() {
-    // Поиск
     document.getElementById('searchInput').addEventListener('input', filterData);
-    
-    // Фильтры
     document.getElementById('courseFilter').addEventListener('change', filterData);
     document.getElementById('facultyFilter').addEventListener('change', filterData);
     
-    // Кнопки экспорта
+
     document.getElementById('exportExcelBtn').addEventListener('click', exportToExcel);
     document.getElementById('exportPdfBtn').addEventListener('click', exportToPDF);
     document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
     
-    // Сортировка по заголовкам таблицы
+
     document.querySelectorAll('.groups-table th[data-sort]').forEach(th => {
         th.addEventListener('click', () => {
             const column = th.dataset.sort;
@@ -272,44 +262,41 @@ function setupEventListeners() {
         });
     });
     
-    // Кнопка экспорта в модальном окне
+
     document.getElementById('exportGroupBtn')?.addEventListener('click', exportCurrentGroup);
 }
 
-// ======== ФИЛЬТРАЦИЯ ДАННЫХ ========
 function filterData() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     const courseFilter = document.getElementById('courseFilter').value;
     const facultyFilter = document.getElementById('facultyFilter').value;
     
     filteredData = groupsData.filter(group => {
-        // Поиск по тексту
         const matchesSearch = searchTerm === '' || 
             group.code.toLowerCase().includes(searchTerm) ||
             group.name.toLowerCase().includes(searchTerm) ||
             group.curator.toLowerCase().includes(searchTerm) ||
             group.faculty.toLowerCase().includes(searchTerm);
         
-        // Фильтр по курсу
+
         const matchesCourse = courseFilter === '' || group.course.toString() === courseFilter;
         
-        // Фильтр по факультету
+
         const matchesFaculty = facultyFilter === '' || group.faculty === facultyFilter;
         
         return matchesSearch && matchesCourse && matchesFaculty;
     });
     
-    // Обновление активных фильтров
+
     updateActiveFilters();
     
-    // Применение текущей сортировки
+
     applySort();
     
-    // Рендер таблицы
+
     renderTable();
 }
 
-// ======== ОБНОВЛЕНИЕ ОТОБРАЖЕНИЯ АКТИВНЫХ ФИЛЬТРОВ ========
 function updateActiveFilters() {
     const container = document.getElementById('activeFilters');
     const searchTerm = document.getElementById('searchInput').value;
@@ -334,13 +321,11 @@ function updateActiveFilters() {
     container.innerHTML = filtersHtml;
 }
 
-// ======== ОЧИСТКА ПОИСКА ========
 window.clearSearch = function() {
     document.getElementById('searchInput').value = '';
     filterData();
 };
 
-// ======== ОЧИСТКА КОНКРЕТНОГО ФИЛЬТРА ========
 window.clearFilter = function(filterType) {
     if (filterType === 'course') {
         document.getElementById('courseFilter').value = '';
@@ -350,7 +335,6 @@ window.clearFilter = function(filterType) {
     filterData();
 };
 
-// ======== СБРОС ВСЕХ ФИЛЬТРОВ ========
 function resetFilters() {
     document.getElementById('searchInput').value = '';
     document.getElementById('courseFilter').value = '';
@@ -361,13 +345,10 @@ function resetFilters() {
     document.getElementById('activeFilters').innerHTML = '';
 }
 
-// ======== СОРТИРОВКА ДАННЫХ ========
 function sortData(column) {
     if (currentSort.column === column) {
-        // Меняем направление
         currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
     } else {
-        // Новая колонка
         currentSort.column = column;
         currentSort.direction = 'asc';
     }
@@ -381,7 +362,7 @@ function applySort() {
         let valA = a[currentSort.column];
         let valB = b[currentSort.column];
         
-        // Обработка чисел
+
         if (currentSort.column === 'course' || currentSort.column === 'studentsCount') {
             valA = Number(valA);
             valB = Number(valB);
@@ -393,18 +374,17 @@ function applySort() {
     });
 }
 
-// ======== РЕНДЕР ТАБЛИЦЫ ========
 function renderTable() {
     const tbody = document.getElementById('tableBody');
     const totalSpan = document.querySelector('#totalGroups span');
     const rowsInfo = document.getElementById('rowsInfo');
     
-    // Обновление общего количества
+
     if (totalSpan) {
         totalSpan.textContent = filteredData.length;
     }
     
-    // Информация о строках
+
     if (rowsInfo) {
         rowsInfo.innerHTML = `Показано записей: <span>${filteredData.length}</span> из <span>${groupsData.length}</span>`;
     }
@@ -443,15 +423,13 @@ function renderTable() {
     tbody.innerHTML = html;
 }
 
-// ======== ПОКАЗ ДЕТАЛЬНОЙ ИНФОРМАЦИИ О ГРУППЕ ========
 window.showGroupDetails = function(groupId) {
     const group = groupsData.find(g => g.id === groupId);
     if (!group) return;
     
     const modalBody = document.getElementById('modalBody');
     
-    // Генерация списка студентов
-    let studentsHtml = '';
+let studentsHtml = '';
     group.students.forEach((student, index) => {
         const initials = student.split(' ').map(n => n[0]).join('');
         studentsHtml += `
@@ -504,19 +482,17 @@ window.showGroupDetails = function(groupId) {
         </ul>
     `;
     
-    // Сохраняем ID текущей группы для экспорта
-    document.getElementById('exportGroupBtn').dataset.groupId = groupId;
+document.getElementById('exportGroupBtn').dataset.groupId = groupId;
     
     modalInstance.show();
 };
 
-// ======== ЭКСПОРТ ТЕКУЩЕЙ ГРУППЫ ========
 function exportCurrentGroup() {
     const groupId = document.getElementById('exportGroupBtn').dataset.groupId;
     const group = groupsData.find(g => g.id === parseInt(groupId));
     if (!group) return;
     
-    // Создаем данные для экспорта
+
     const exportData = [
         ['Параметр', 'Значение'],
         ['Код группы', group.code],
@@ -532,14 +508,13 @@ function exportCurrentGroup() {
         ...group.students.map(s => [s])
     ];
     
-    // Экспорт в Excel
+
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(exportData);
     XLSX.utils.book_append_sheet(wb, ws, group.code);
     XLSX.writeFile(wb, `group_${group.code}.xlsx`);
 }
 
-// ======== ЭКСПОРТ В EXCEL ========
 function exportToExcel() {
     const exportData = [
         ['Код группы', 'Специальность', 'Курс', 'Факультет', 'Классный руководитель', 'Кол-во студентов']
@@ -562,25 +537,24 @@ function exportToExcel() {
     XLSX.writeFile(wb, 'groups_list.xlsx');
 }
 
-// ======== ЭКСПОРТ В PDF ========
 function exportToPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
-    // Заголовок
+
     doc.setFontSize(16);
-    doc.setTextColor(0, 48, 87); // BPK blue
+    doc.setTextColor(0, 48, 87);
     doc.text('Белоярский политехнический колледж', 14, 20);
     
     doc.setFontSize(14);
-    doc.setTextColor(139, 0, 0); // BPK burgundy
+    doc.setTextColor(139, 0, 0);
     doc.text('Справочник учебных групп', 14, 30);
     
     doc.setFontSize(10);
     doc.setTextColor(100);
     doc.text(`Дата формирования: ${new Date().toLocaleDateString('ru-RU')}`, 14, 38);
     
-    // Таблица
+
     const tableColumn = ['Код', 'Специальность', 'Курс', 'Факультет', 'Куратор', 'Студентов'];
     const tableRows = filteredData.map(group => [
         group.code,
