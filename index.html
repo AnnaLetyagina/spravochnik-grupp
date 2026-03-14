@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Справочник групп — Белоярский политехнический колледж</title>
-    <!-- Bootstrap 5.3 (согласно ТЗ) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Подключаем внешний CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Шапка сайта в стиле Белоярского политехнического колледжа -->
     <header class="header">
         <div class="header-container">
             <a href="https://bpkhmao.ru/" class="header-link" target="_blank" rel="noopener noreferrer">
-                <img src="images/logo-bpk.png.png" 
+                <img src="logo-bpk.png.png" 
                      alt="Логотип Белоярского политехнического колледжа" 
                      class="header-logo">
                 <div class="header-title">
@@ -27,9 +23,8 @@
         </div>
     </header>
 
-    <!-- Основной контент -->
+
     <main class="main-container">
-        <!-- Навигационная цепочка (хлебные крошки) -->
         <div class="breadcrumb-custom">
             <a href="https://bpkhmao.ru/" target="_blank" rel="noopener noreferrer">Главная</a> 
             <span></span>
@@ -38,13 +33,13 @@
             <span class="current">Справочник групп</span>
         </div>
 
-        <!-- Заголовок раздела с общим количеством групп -->
+
         <div class="section-title">
             <h2>Учебные группы</h2>
             <div class="total-badge" id="totalGroups">всего групп: <span>12</span></div>
         </div>
 
-        <!-- Панель поиска и фильтрации (согласно спецификации требований) -->
+
         <div class="filters-panel">
             <div class="row g-3">
                 <div class="col-md-4">
@@ -89,11 +84,11 @@
                 </div>
             </div>
             
-            <!-- Активные фильтры (будут появляться при выборе) -->
+
             <div class="active-filters mt-2" id="activeFilters"></div>
         </div>
 
-        <!-- Карточка с таблицей групп -->
+
         <div class="card-table">
             <div class="table-responsive">
                 <table class="groups-table" id="groupsTable">
@@ -108,12 +103,11 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        <!-- Данные будут загружаться через JavaScript -->
                     </tbody>
                 </table>
             </div>
             
-            <!-- Индикатор загрузки и пустые состояния -->
+
             <div class="table-footer">
                 <div class="rows-info" id="rowsInfo">Показано записей: <span>12</span> из <span>12</span></div>
                 <div class="loading-spinner" id="loadingSpinner" style="display: none;">
@@ -124,7 +118,7 @@
             </div>
         </div>
 
-    <!-- Футер -->
+
     <footer class="footer">
         <div class="footer-container">
             <div>
@@ -138,7 +132,7 @@
         </div>
     </footer>
 
-    <!-- Модальное окно для детальной информации о группе (согласно ТЗ) -->
+
     <div class="modal fade" id="groupModal" tabindex="-1" aria-labelledby="groupModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -147,7 +141,6 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body" id="modalBody">
-                    <!-- Содержимое будет заполняться динамически -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -159,12 +152,10 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS (для модального окна) -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jsPDF и autoTable для экспорта в PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-    <!-- Подключаем внешний JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
